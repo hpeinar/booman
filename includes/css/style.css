@@ -1,0 +1,10 @@
+/* body */
+body {
+	background-color: #CCC;
+}
+
+/* mainCanvas */
+#mainCanvas {
+	margin:5px;
+	border:1px solid #AAA;
+}
