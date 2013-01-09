@@ -8,7 +8,6 @@ function tile() {
 	this.identifier = 0;
 	this.X = 1;
 	this.Y = 1;
-	this.color = '#FFF';
 	this.sprite = null;
 	this.isWalkable = true;
 	this.isDestructable = false;
@@ -22,40 +21,14 @@ function tile() {
 			tile.color = color;
 			tile.isWalkable = true;
 			tile.isDeadly = false;
-			tile.sprite = 'grass';
+			tile.sprite = 'GRASS';
 			console.log('Changing tile color');
 		}, time);
 	}
 	this.draw = function(canvas) {
 
-		if(this.sprite) {
-			canvas.drawImage({
-				source: 'includes/images/'+ this.sprite +'.png',
-
-				x: this.X,
-				y: this.Y,
-
-				width: config.tileSize,
-				height: config.tileSize,
-
-				fromCenter: false
-			})
-		} else {
-			canvas.drawRect({
-				x: this.X, 
-				y: this.Y, 
-				fillStyle: this.color,
-
-				strokeStyle: '#000000',
-				strokeWidth: 1, 
-				cornerRadius: 0,
-
-				width: config.tileSize, 
-				height: config.tileSize,
-
-				fromCenter: false
-			})	
-		}
+		var s = new sprite();
+		s.draw(this.sprite, canvas, this.X, this.Y);
 		
 		// draw the item if it's seeable
 		if(this.hasItem == true && this.isWalkable == true) {

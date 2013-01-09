@@ -63,22 +63,20 @@ function gameBoard() {
 				newTile.X = i * config.tileSize;
 				newTile.Y = e * config.tileSize + config.panelHeight;
 				newTile.identifier = i + (e*i);
-				newTile.sprite = 'grass';
+				newTile.sprite = 'GRASS';
 
 				var random = Math.floor(Math.random() * 6);
 
 				if(i == 0 || e == 0 || i == 19 || e == 19) {
 					// paint walls
-					newTile.color = '#900';
 					newTile.isBorder = true;
 					newTile.isWalkable = false;
-					newTile.sprite = 'stoneWall';
+					newTile.sprite = 'WALL';
 				} else if(random == 5) {
 					// some random walls
-					newTile.color = '#00C';
 					newTile.isWalkable = false;
 					newTile.isDestructable = true;
-					newTile.sprite = 'wall';
+					newTile.sprite = 'BREAKABLE_WALL';
 
 
 					var itemRandom = Math.floor(Math.random() * 6);
@@ -89,8 +87,7 @@ function gameBoard() {
 						newItem.Y = newTile.Y;
 						newItem.type = 1;
 						newItem.name = 'Bomb count';
-						newItem.color = '#3a9dc2';
-						newItem.sprite = 'bomb_bonus';
+						newItem.sprite = 'BOMB_BONUS';
 
 						newTile.hasItem = true;
 						newTile.item = newItem;
@@ -102,8 +99,7 @@ function gameBoard() {
 						newItem.Y = newTile.Y;
 						newItem.type = 2;
 						newItem.name = 'Bomb radius';
-						newItem.color = '#52ce7e';
-						newItem.sprite = 'bomb_radius';
+						newItem.sprite = 'RADIUS_BONUS';
 
 						newTile.hasItem = true;
 						newTile.item = newItem;
@@ -130,58 +126,58 @@ function gameBoard() {
 		var playerX = this.player.X;
 		var playerY = this.player.Y;
 
-		var playerFarX = playerX + config.tileSize - 3;
-		var playerFarY = playerY + config.tileSize - 3;
+		var playerFarX = playerX + (config.tileSize - 1);
+		var playerFarY = playerY + (config.tileSize - 1);
 
 		for(var tile in this.tiles) {
 			var currentTile = this.tiles[tile];
 			
 			if((playerX >= currentTile.X
 				&& playerY >= currentTile.Y
-				&& playerY <= (currentTile.Y + config.tileSize)
-				&& playerX <= (currentTile.X + config.tileSize))
+				&& playerY <= (currentTile.Y + (config.tileSize - 1))
+				&& playerX <= (currentTile.X + (config.tileSize - 1)))
 				||
 				(playerFarX >= currentTile.X
 				&& playerFarY >= currentTile.Y
-				&& playerFarY <= (currentTile.Y + config.tileSize)
-				&& playerFarX <= (currentTile.X + config.tileSize)) 
+				&& playerFarY <= (currentTile.Y + (config.tileSize - 1))
+				&& playerFarX <= (currentTile.X + (config.tileSize - 1))) 
 				||
 				(playerFarX >= currentTile.X
 				&& playerY >= currentTile.Y
-				&& playerY <= (currentTile.Y + config.tileSize)
-				&& playerFarX <= (currentTile.X + config.tileSize))
+				&& playerY <= (currentTile.Y + (config.tileSize - 1))
+				&& playerFarX <= (currentTile.X + (config.tileSize - 1)))
 				||
 				(playerX >= currentTile.X
 				&& playerFarY >= currentTile.Y
-				&& playerFarY <= (currentTile.Y + config.tileSize)
-				&& playerX <= (currentTile.X + config.tileSize)))	{
+				&& playerFarY <= (currentTile.Y + (config.tileSize - 1))
+				&& playerX <= (currentTile.X + (config.tileSize - 1))))	{
 
 				// add this to player on Tiles
 				this.player.tilesOn.push(currentTile);
 			}
 		}
 
-		// handle the key pressed
+		// handle the keys pressed
 		for(var key in this.keyQueue) {
 			var keyDownCode = this.keyQueue[key];
 			if(keyDownCode == 39) {
 				this.player.move(this, this.player.speed, 0);
-				this.player.sprite = "player_right";
+				this.player.sprite = "PLAYER_RIGHT";
 			}
 
 			if(keyDownCode == 38) {
 				this.player.move(this, 0, this.player.speed * -1);
-				this.player.sprite = "player_up";
+				this.player.sprite = "PLAYER_UP";
 			}
 
 			if(keyDownCode == 37) {
 				this.player.move(this, this.player.speed * -1, 0);
-				this.player.sprite = "player_left";
+				this.player.sprite = "PLAYER_LEFT";
 			}
 
 			if(keyDownCode == 40) {
 				this.player.move(this, 0, this.player.speed);
-				this.player.sprite = "player_down";
+				this.player.sprite = "PLAYER_DOWN";
 			}
 
 			if(keyDownCode == 32) {
@@ -195,7 +191,7 @@ function gameBoard() {
 							board.player.bombs--;
 							newBomb.X = tile.X;
 							newBomb.Y = tile.Y;
-							newBomb.sprite = 'bomb';
+							newBomb.sprite = 'BOMB';
 							newBomb.tileId = tile.identifier;
 							newBomb.boomRadius = board.player.bombRadius;
 							newBomb.originTile = tile;

@@ -16,8 +16,7 @@ function bomb() {
 	this.spreadFire = function(board, tile, player) {
 		if(tile) {
 			if(this.spreading && !tile.isBorder) {
-				tile.color = '#F0F';
-				tile.sprite = 'fire';
+				tile.sprite = 'FIRE';
 				tile.isDeadly = true;
 				tile.breakWall(tile, '#FFF', 1000);
 
@@ -51,7 +50,7 @@ function bomb() {
 	this.lowerTimer = function(board, bomb, interval, player) {
 		console.log('Bomb timer!');
 		bomb.boomTime--;
-		bomb.sprite = 'bomb_'+ bomb.boomTime;
+		bomb.sprite = 'BOMB_'+ (3 - bomb.boomTime);
 		bomb.timerText = bomb.boomTime;
 		
 		if(bomb.boomTime <= 0) {
@@ -111,38 +110,7 @@ function bomb() {
 		}, 1000)
 	}
 	this.draw = function(canvas) {
-		if(this.sprite) {
-			canvas.drawImage({
-				source: 'includes/images/'+ this.sprite +'.png',
-
-				x: this.X,
-				y: this.Y,
-
-				width: config.tileSize,
-				height: config.tileSize,
-
-				fromCenter: false
-			})
-		} else {
-			canvas.drawRect({
-				fillStyle: '#F70',
-
-				x: this.X,
-				y: this.Y,
-
-				height: Math.floor(config.tileSize / 1.5),
-				width: Math.floor(config.tileSize / 1.5),
-
-				fromCenter: false
-			})
-			.drawText({
-				fillStyle: '#000',
-				font: '11px Verdana',
-				text: this.timerText,
-
-				x: this.X + 7,
-				y: this.Y + 6
-			})
-		}
+		var s = new sprite();
+		s.draw(this.sprite, canvas, this.X, this.Y);
 	}
 }

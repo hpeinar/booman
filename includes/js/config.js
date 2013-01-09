@@ -13,5 +13,6 @@ var config = {
 	panelWidth: 400,
 	panelHeight: 20,
 
-	tileSize: 20
+	tileSize: 20,
+	spriteSheet: "spritesheet.png"
 }

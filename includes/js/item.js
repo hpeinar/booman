@@ -12,29 +12,7 @@ function item() {
 	this.name = ''; // name for reference
 	this.sprite = null;
 	this.draw = function(canvas) {
-		if(this.sprite) {
-			canvas.drawImage({
-				source: 'includes/images/'+ this.sprite +'.png',
-
-				x: this.X,
-				y: this.Y,
-
-				width: config.tileSize,
-				height: config.tileSize,
-
-				fromCenter: false
-			})
-		} else {
-			canvas.drawRect({
-				fillStyle: this.color,
-				x: this.X,
-				y: this.Y,
-
-				height: Math.floor(config.tileSize / 1.4),
-				width: Math.floor(config.tileSize / 1.4),
-
-				fromCenter: false
-			});
-		}
+		var s = new sprite();
+		s.draw(this.sprite, canvas, this.X, this.Y);
 	}
 }
