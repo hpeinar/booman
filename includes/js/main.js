@@ -32,7 +32,7 @@ $(document).ready(function() {
 				game.update(function() {
 					game.draw();
 				});
-			}, 50);		
+			}, 25);
 
 		})
 
@@ -43,11 +43,4 @@ $(document).ready(function() {
 document.onkeydown = function(evt) {
     evt = evt || window.event;
     var keyCode = evt.keyCode;
-    if (keyCode >= 37 && keyCode <= 40) {
-        return false;
-    }
-
-    if(keyCode == 32) {
-    	return false;
-    }
 };

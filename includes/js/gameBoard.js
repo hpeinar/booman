@@ -16,6 +16,8 @@ function gameBoard() {
 	// move timer
 	this.isMoving = false;
 	this.movingTimer = 0;
+	this.moveX = 0;
+	this.moveY = 0;
 	this.bind = function(board, cb) {
 		board.canvas.keydown(function(e) {
 			board.keyDownCode = e.keyCode;
@@ -161,76 +163,101 @@ function gameBoard() {
 			}
 		}
 
-		// handle the keys pressed
-		for(var key in this.keyQueue) {
+		if(!this.isMoving) {
+			this.moveX = 0;
+			this.moveY = 0;
+		
+			// handle the keys pressed
+			for(var key in this.keyQueue) {
+					var keyDownCode = this.keyQueue[key];
 
-			if(!this.isMoving) {
+					if(!this.isMoving) {
+						if(keyDownCode == 39) {
 
-				var keyDownCode = this.keyQueue[key];
-				if(keyDownCode == 39) {
-					this.player.move(this, this.player.speed, 0);
-					this.player.sprite = "PLAYER_RIGHT";
+							this.moveX = this.player.speed;
+							this.player.sprite = "PLAYER_RIGHT";
 
-					this.isMoving = true;
-					this.movingTimer = 4;
-				}
-
-				if(keyDownCode == 38) {
-					this.player.move(this, 0, this.player.speed * -1);
-					this.player.sprite = "PLAYER_UP";
-
-					this.isMoving = true;
-					this.movingTimer = 4;
-				}
-
-				if(keyDownCode == 37) {
-					this.player.move(this, this.player.speed * -1, 0);
-					this.player.sprite = "PLAYER_LEFT";
-
-					this.isMoving = true;
-					this.movingTimer = 4;
-				}
-
-				if(keyDownCode == 40) {
-					this.player.move(this, 0, this.player.speed);
-					this.player.sprite = "PLAYER_DOWN";
-
-					this.isMoving = true;
-					this.movingTimer = 4;
-				}
-
-				if(keyDownCode == 32) {
-					// plant a bomb
-					var newBomb = new bomb();
-
-					var board = this;
-					if(this.player.bombs > 0) {
-						this.player.plantBomb(board, function(tile) {
-							if(tile) {
-								board.player.bombs--;
-								newBomb.X = tile.X;
-								newBomb.Y = tile.Y;
-								newBomb.sprite = 'BOMB';
-								newBomb.tileId = tile.identifier;
-								newBomb.boomRadius = board.player.bombRadius;
-								newBomb.originTile = tile;
-
-								newBomb.timer(board, newBomb, board.player);
-								board.bombs.push(newBomb);
-							}
-						})
+							this.isMoving = true;
+							this.movingTimer = 4;
+						}
 					}
 
-				}
-			} else {
-				this.movingTimer--;
-				if(this.movingTimer == 0) {
-					this.isMoving = false;
-				}
+					if(!this.isMoving) {
+						if(keyDownCode == 38) {
+
+							this.moveY = this.player.speed * -1;
+							this.player.sprite = "PLAYER_UP";
+
+							this.isMoving = true;
+							this.movingTimer = 4;
+						}
+					}
+
+					if(!this.isMoving) {
+						if(keyDownCode == 37) {
+
+							this.moveX = this.player.speed * -1;
+							this.player.sprite = "PLAYER_LEFT";
+
+							this.isMoving = true;
+							this.movingTimer = 4;
+						}
+					}
+
+					if(!this.isMoving) {
+						if(keyDownCode == 40) {
+
+							this.moveY = this.player.speed;
+							this.player.sprite = "PLAYER_DOWN";
+
+							this.isMoving = true;
+							this.movingTimer = 4;
+						}
+					}
+
+					if(keyDownCode == 32) {
+						// plant a bomb
+						var newBomb = new bomb();
+
+						var board = this;
+						if(this.player.bombs > 0) {
+							this.player.plantBomb(board, function(tile) {
+								if(tile) {
+									board.player.bombs--;
+									newBomb.X = tile.X;
+									newBomb.Y = tile.Y;
+									newBomb.sprite = 'BOMB';
+									newBomb.tileId = tile.identifier;
+									newBomb.boomRadius = board.player.bombRadius;
+									newBomb.originTile = tile;
+
+									newBomb.timer(board, newBomb, board.player);
+									board.bombs.push(newBomb);
+								}
+							})
+						}
+
+					}
+
+				
+				//this.lastKeysDown = this.keyQueue;
+			} // end of input handling
+
+
+			if(this.isMoving == true) {
+				this.player.move(this, this.moveX / 4, this.moveY / 4);
+			}
+
+		} else {
+			this.movingTimer--;
+			if(this.movingTimer == 0) {
+				this.isMoving = false;
+			}
+			if(this.isMoving == true) {
+				this.player.move(this, this.moveX / 4, this.moveY / 4);
 			}
 			
-			//this.lastKeysDown = this.keyQueue;
-		} // end of input handling
+		}
 
 
 		cb();
