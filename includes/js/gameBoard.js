@@ -215,6 +215,7 @@ function gameBoard() {
 						}
 					}
 
+
 					if(keyDownCode == 32) {
 						// plant a bomb
 						var newBomb = new bomb();
@@ -278,6 +279,8 @@ function gameBoard() {
 		this.panel.draw(this.canvas, this);
 
 		// tiles
+
+		
 		for(var tile in this.tiles) {
 			this.tiles[tile].draw(this.canvas);
 		}

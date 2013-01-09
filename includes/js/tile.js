@@ -27,8 +27,10 @@ function tile() {
 	}
 	this.draw = function(canvas) {
 
-		var s = new sprite();
-		s.draw(this.sprite, canvas, this.X, this.Y);
+		if(this.sprite != 'GRASS') {
+			var s = new sprite();
+			s.draw(this.sprite, canvas, this.X, this.Y);
+		}
 		
 		// draw the item if it's seeable
 		if(this.hasItem == true && this.isWalkable == true) {
