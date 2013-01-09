@@ -7,7 +7,7 @@ http://projekt406.ee/codeblog
 function player() {
 	this.X = 20;
 	this.Y = 20 + config.panelHeight;
-	this.speed = 20;
+	this.speed = 4;
 	this.bombs = 5; // how many bombs can be places at the same time
 	this.bombRadius = 2;
 	this.tilesOn = new Array();
