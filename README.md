@@ -16,7 +16,7 @@ Changelog
 Little about it:
 ==
 - ~750 lines of js (v0.1)
-- took me around 2 weeks, after the work development time to create
+- took me around 2 weeks, after the work development time to create (v0.1)
 - everything is written in OOP style, so all the things are objects which have their own properties and methods
 - Game update and draw functions are called every 50ms
 - Input is handled using queue system. All keystrokes are put into an queue which is handled on the game update. This should give pretty responsive gameplay.
