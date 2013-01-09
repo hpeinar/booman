@@ -18,7 +18,14 @@ function player() {
 		var s = new sprite();
 		s.draw(this.sprite, canvas, this.X, this.Y);
 	};
-	this.die = function() {
+	this.die = function(canvas) {
+		var floater = new floatingText();
+		floater.text = '+1 death';
+		floater.color = '#900';
+		floater.X = this.X - 5;
+		floater.Y = this.Y - 10;
+		canvas.floatingTexts.push(floater);
+		
 		this.X = 20;
 		this.Y = 20 + config.panelHeight;
 
@@ -89,7 +96,7 @@ function player() {
 
 					// is the tile deadly?
 					if(currentTile.isDeadly == true) {
-						this.die();
+						this.die(board);
 					}
 
 					// if the tile has a bomb, and player has been "off" the tile, don't let him on it
@@ -100,8 +107,21 @@ function player() {
 					if(move == true && currentTile.isWalkable == true && currentTile.hasItem) {
 						// tile has an item, collect it
 						if(currentTile.item.type == 1) {
+							// generate a floating text there
+							var floater = new floatingText();
+							floater.text = '+1 bomb';
+							floater.X = currentTile.X;
+							floater.Y = currentTile.Y;
+							board.floatingTexts.push(floater);
+
 							board.player.bombs++;
 						} else if(currentTile.item.type == 2) {
+							var floater = new floatingText();
+							floater.text = '+1 radius';
+							floater.X = currentTile.X;
+							floater.Y = currentTile.Y;
+							board.floatingTexts.push(floater);
+
 							board.player.bombRadius++;
 						}
 

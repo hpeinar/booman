@@ -22,7 +22,6 @@ function tile() {
 			tile.isWalkable = true;
 			tile.isDeadly = false;
 			tile.sprite = 'GRASS';
-			console.log('Changing tile color');
 		}, time);
 	}
 	this.draw = function(canvas) {

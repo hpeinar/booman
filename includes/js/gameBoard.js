@@ -8,6 +8,7 @@ function gameBoard() {
 	this.tiles = new Array();
 	this.bombs = new Array();
 	this.keyQueue = new Array();
+	this.floatingTexts = new Array();
 	this.player = null;
 	this.canvas = null;
 	this.panel = null;
@@ -234,6 +235,7 @@ function gameBoard() {
 
 									newBomb.timer(board, newBomb, board.player);
 									board.bombs.push(newBomb);
+									board.keyQueue.splice(board.keyQueue.indexOf(32), 1);
 								}
 							})
 						}
@@ -279,8 +281,6 @@ function gameBoard() {
 		this.panel.draw(this.canvas, this);
 
 		// tiles
-
-		
 		for(var tile in this.tiles) {
 			this.tiles[tile].draw(this.canvas);
 		}
@@ -292,5 +292,10 @@ function gameBoard() {
 
 		// player
 		this.player.draw(this.canvas);
+
+		// floating texts
+		for(var floatingText in this.floatingTexts) {
+			this.floatingTexts[floatingText].draw(this.canvas, this);
+		}
 	};
 }
