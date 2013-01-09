@@ -8,7 +8,14 @@ function panel() {
 	this.X = 0;
 	this.Y = 0;
 	this.draw = function(canvas, board) {
-		canvas.drawText({
+		canvas.drawRect({
+			fillStyle: "#ccc",
+			x: 0, y: 0,
+			width: config.panelWidth,
+			height: config.panelHeight,
+			fromCenter: false
+		})
+		.drawText({
 			fillStyle: '#000',
 			font: '11px Verdana',
 			text: 'Bombs: '+ board.player.bombs,

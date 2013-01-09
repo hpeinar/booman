@@ -5,6 +5,8 @@ body {
 
 /* mainCanvas */
 #mainCanvas {
+	background-image:url('../images/grass.jpg');
+	background-repeat: repeat;
 	margin:5px;
 	border:1px solid #AAA;
 }

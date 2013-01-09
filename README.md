@@ -5,6 +5,11 @@ Bomberman in html5
 
 Changelog
 ==
+<strong>v0.3</strong>
+- grass tiles are no longer drawn, background is set with CSS
+- player movement is now "animated" meaning that after the key click, player is locked into the animation for 4 updates
+- update rate changed from 50 to 25
+
 <strong>v0.2</strong>
 - introduced spritesheet
 - player is now the same size as every other tile
@@ -18,7 +23,7 @@ Little about it:
 - ~750 lines of js (v0.1)
 - took me around 2 weeks, after the work development time to create (v0.1)
 - everything is written in OOP style, so all the things are objects which have their own properties and methods
-- Game update and draw functions are called every 50ms
+- Game update and draw functions are called every 25ms
 - Input is handled using queue system. All keystrokes are put into an queue which is handled on the game update. This should give pretty responsive gameplay.
 - Sprites are drawn using <a href="http://calebevans.me/projects/jcanvas/index.php" title="jCanvas">jCanvas</a>.
 - It has no levels, so after blowing all the blocks up there is nothing else to do.
@@ -40,4 +45,4 @@ Do whatever you please, but refer to me as an original author :)
 credits
 ==
 All the credits for tiles and the character go to <strong>Klex1992</strong> on <a href="http://www.rpgmakervx.net/index.php?showtopic=31465" title="rpgmakervx.net" target="_blank">rpgmakervx.net</a>
-
+<strong>Big</strong> thanks to <a href="https://github.com/r3ality" title"R3ality's github" target="_blank">R3ality</a> for brainstorming with me and helping with finding ideas and solutions to some problems I ran into.

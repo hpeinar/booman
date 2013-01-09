@@ -15,7 +15,6 @@ function bomb() {
 	this.sprite = null;
 	this.spreadFire = function(board, tile, player) {
 		if(tile) {
-			this.spreading = true;
 			if(this.spreading && !tile.isBorder) {
 				tile.sprite = 'FIRE';
 				tile.isDeadly = true;
@@ -53,7 +52,7 @@ function bomb() {
 		bomb.boomTime--;
 		bomb.sprite = 'BOMB_'+ (3 - bomb.boomTime);
 		bomb.timerText = bomb.boomTime;
-		
+
 		if(bomb.boomTime <= 0) {
 			// bomb goes BOOM
 			player.bombs++;
@@ -70,6 +69,7 @@ function bomb() {
 
 			// spread the fire, hitting an destructable tile will stop the spread
 			// spread fire up
+			bomb.spreading = true;
 			for(var i = 1;i <= bomb.boomRadius;i++) {
 				board.getTile(board, bomb.originTile.X, bomb.originTile.Y - config.tileSize * i, function(tile) {
 					bomb.spreadFire(board, tile, player);
@@ -77,6 +77,7 @@ function bomb() {
 			}
 
 			// spread fire left
+			bomb.spreading = true;
 			for(var i = 1;i <= bomb.boomRadius;i++) {
 				board.getTile(board, bomb.originTile.X - config.tileSize * i, bomb.originTile.Y, function(tile) {
 					bomb.spreadFire(board, tile, player);
@@ -84,6 +85,7 @@ function bomb() {
 			}			
 
 			// spread fire down
+			bomb.spreading = true;
 			for(var i = 1;i <= bomb.boomRadius;i++) {
 				board.getTile(board, bomb.originTile.X, bomb.originTile.Y + config.tileSize * i, function(tile) {
 					bomb.spreadFire(board, tile, player);
@@ -91,12 +93,13 @@ function bomb() {
 			}
 
 			// spread fire right
+			bomb.spreading = true;
 			for(var i = 1;i <= bomb.boomRadius;i++) {
 				board.getTile(board, bomb.originTile.X + config.tileSize * i, bomb.originTile.Y, function(tile) {
 					bomb.spreadFire(board, tile, player);
 				});
 			}
-			
+
 
 			clearInterval(interval);
 		}	
