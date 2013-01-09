@@ -44,5 +44,5 @@ Do whatever you please, but refer to me as an original author :)
 
 credits
 ==
-All the credits for tiles and the character go to <strong>Klex1992</strong> on <a href="http://www.rpgmakervx.net/index.php?showtopic=31465" title="rpgmakervx.net" target="_blank">rpgmakervx.net</a>
+All the credits for tiles and the character go to <strong>Klex1992</strong> on <a href="http://www.rpgmakervx.net/index.php?showtopic=31465" title="rpgmakervx.net" target="_blank">rpgmakervx.net</a><br />
 <strong>Big</strong> thanks to <a href="https://github.com/r3ality" title"R3ality's github" target="_blank">R3ality</a> for brainstorming with me and helping with finding ideas and solutions to some problems I ran into.
