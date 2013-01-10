@@ -5,6 +5,10 @@ Bomberman in html5
 
 Changelog
 ==
+<strong>v0.4</strong>
+- introduced floating texts. Info texts are shown on bonus pickup and death
+- player now spawns onto a random tile (reduces the risk of spawning into a wall or no-way-out position)
+
 <strong>v0.3</strong>
 - grass tiles are no longer drawn, background is set with CSS
 - player movement is now "animated" meaning that after the key click, player is locked into the animation for 4 updates
