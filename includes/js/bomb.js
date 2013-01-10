@@ -23,7 +23,7 @@ function bomb() {
 				// check if player is on any of the tiles, if so, kill the player
 				for(var playerTile in player.tilesOn) {
 					if(player.tilesOn[playerTile] === tile) {
-						player.die();
+						player.die(board);
 					}
 				}
 
@@ -53,12 +53,20 @@ function bomb() {
 		bomb.sprite = 'BOMB_'+ (3 - bomb.boomTime);
 		bomb.timerText = bomb.boomTime;
 
+
 		if(bomb.boomTime <= 0) {
 			// bomb goes BOOM
 			player.bombs++;
 			bomb.originTile.color = '#F0F';
 			bomb.originTile.breakWall(bomb.originTile, '#FFF', 1000);
 			bomb.originTile.hasBomb = false;
+			bomb.originTile.sprite = 'FIRE';
+			bomb.originTile.isDeadly = true;
+			for(var playerTile in player.tilesOn) {
+				if(player.tilesOn[playerTile] === bomb.originTile) {
+					player.die(board);
+				}
+			}
 
 			// take the bomb off drawList from board
 			var bombIndex = board.bombs.indexOf(bomb);
