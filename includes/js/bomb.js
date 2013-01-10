@@ -48,7 +48,7 @@ function bomb() {
 		}
 	}
 	this.lowerTimer = function(board, bomb, interval, player) {
-		console.log('Bomb timer!');
+		//console.log('Bomb timer!');
 		bomb.boomTime--;
 		bomb.sprite = 'BOMB_'+ (3 - bomb.boomTime);
 		bomb.timerText = bomb.boomTime;
