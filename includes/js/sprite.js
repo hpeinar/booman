@@ -33,8 +33,8 @@ function sprite() {
 			canvas.drawImage({
 				source: this.sheet,
 
-				sx: (drawable[1] * 20) - 20,
-				sy: (drawable[0] * 20) - 20,
+				sx: (drawable[1] * config.tileSize) - config.tileSize,
+				sy: (drawable[0] * config.tileSize) - config.tileSize,
 
 				x: drawX,
 				y: drawY,
