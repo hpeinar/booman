@@ -18,6 +18,22 @@ function player() {
 		var s = new sprite();
 		s.draw(this.sprite, canvas, this.X, this.Y);
 	};
+	this.randomSpawn = function(board) {
+		var xMax = board.xTiles - 2; // minus wall tiles
+		var yMax = board.yTiles - 2;
+
+		var xStart = 1;
+		var yStart = 1;
+
+		// get random
+		var xRand = Math.floor(Math.random() * (xStart + xMax));
+		var yRand = Math.floor(Math.random() * (yStart + yMax));
+
+		console.log(xRand, yRand);
+
+		this.X = xRand * config.tileSize;
+		this.Y = yRand * config.tileSize + config.panelHeight;
+	};
 	this.die = function(canvas) {
 		var floater = new floatingText();
 		floater.text = '+1 death';
@@ -26,8 +42,7 @@ function player() {
 		floater.Y = this.Y - 10;
 		canvas.floatingTexts.push(floater);
 		
-		this.X = 20;
-		this.Y = 20 + config.panelHeight;
+		this.randomSpawn(canvas);
 
 		this.deaths++;
 	};

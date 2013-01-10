@@ -19,6 +19,11 @@ function gameBoard() {
 	this.movingTimer = 0;
 	this.moveX = 0;
 	this.moveY = 0;
+
+	// board options
+	this.xTiles = 20;
+	this.yTiles = 20;
+
 	this.bind = function(board, cb) {
 		board.canvas.keydown(function(e) {
 			board.keyDownCode = e.keyCode;
@@ -63,9 +68,10 @@ function gameBoard() {
 		// generate map
 		//var tile = new tile();
 
-		for(var i = 0;i < 20;i++) {
+		for(var i = 0;i < this.xTiles;i++) {
 
-			for(var e = 0;e < 20;e++) {
+			for(var e = 0;e < this.yTiles;e++) {
+
 				var newTile = new tile();
 				newTile.X = i * config.tileSize;
 				newTile.Y = e * config.tileSize + config.panelHeight;
@@ -113,6 +119,7 @@ function gameBoard() {
 					}
 				}
 				this.tiles.push(newTile);
+			
 			}
 		}
 
@@ -120,6 +127,7 @@ function gameBoard() {
 		// add player
 		var newPlayer = new player();
 		this.player = newPlayer;
+		this.player.randomSpawn(this);
 		
 		var infoPanel = new panel();
 		this.panel = infoPanel;
