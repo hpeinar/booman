@@ -25,12 +25,16 @@ function sprite() {
 	this.sheet = 'includes/images/'+ config.spriteSheet;
 	this.tileSize = config.tileSize;
 	// draws an sprite to given location
-	this.draw = function(spriteName, canvas, drawX, drawY) {
+	this.draw = function(spriteName, canvas, drawX, drawY, layer) {
 		// get sprite
 		if(spriteName in sprites) {
-			var drawable = sprites[spriteName];
+			var drawable = sprites[spriteName];	
 
 			canvas.drawImage({
+
+				layer: (layer ? true : false),
+				name: (layer ? layer : null),
+
 				source: this.sheet,
 
 				sx: (drawable[1] * 20) - 20,

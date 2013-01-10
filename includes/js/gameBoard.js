@@ -78,6 +78,12 @@ function gameBoard() {
 				newTile.identifier = i + (e*i);
 				newTile.sprite = 'GRASS';
 
+				// for every tile, draw a background grass layer
+				// draw it right here because we'll never change it
+				/*var s = new sprite();
+				s.draw('GRASS', this.canvas, newTile.X, newTile.Y, 'background');
+				*/
+
 				var random = Math.floor(Math.random() * 6);
 
 				if(i == 0 || e == 0 || i == 19 || e == 19) {
@@ -119,7 +125,7 @@ function gameBoard() {
 					}
 				}
 				this.tiles.push(newTile);
-			
+
 			}
 		}
 
@@ -131,6 +137,8 @@ function gameBoard() {
 		
 		var infoPanel = new panel();
 		this.panel = infoPanel;
+
+		//console.log(this.canvas.getLayers());
 
 		cb();
 	};
@@ -282,6 +290,7 @@ function gameBoard() {
 		}
 	};
 	this.draw = function() {
+
 		// clear canvas
 		this.canvas.clearCanvas();
 

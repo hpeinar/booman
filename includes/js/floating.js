@@ -18,8 +18,7 @@ function floatingText() {
 
 		if(this.opacity > 0.1) {
 			this.opacity -= 0.05;
-
-			console.log(this.opacity);
+			
 			if(this.opacity >= 0.1) {
 				this.Y -= 1;
 			}
