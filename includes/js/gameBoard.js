@@ -11,6 +11,7 @@ function gameBoard() {
 	this.floatingTexts = new Array();
 	this.player = null;
 	this.canvas = null;
+	this.backgroundCanvas = null;
 	this.panel = null;
 	this.lastKeysDown = null;
 
@@ -48,9 +49,17 @@ function gameBoard() {
 
 		cb(selectedTile);
 	}
+	this.backgroundCanvasInit = function() {
+		this.backgroundCanvas.attr('width', config.canvasWidth);
+		this.backgroundCanvas.attr('height', config.canvasHeight);
+	};
 	this.init = function(cb) {
 		// select the game board, put it into the right size
 		this.canvas = $('#mainCanvas');
+		this.backgroundCanvas = $('#backgroundCanvas');
+
+		// init backgroundCanvas
+		this.backgroundCanvasInit();
 
 		// to not use width() or height() methods here, it'll screw the canvas up
 		this.canvas.attr('width', config.canvasWidth);
@@ -78,11 +87,11 @@ function gameBoard() {
 				newTile.identifier = i + (e*i);
 				newTile.sprite = 'GRASS';
 
-				// for every tile, draw a background grass layer
+				// for every tile, draw a backgroun	d grass layer
 				// draw it right here because we'll never change it
-				/*var s = new sprite();
-				s.draw('GRASS', this.canvas, newTile.X, newTile.Y, 'background');
-				*/
+				var s = new sprite();
+				s.draw('GRASS', this.backgroundCanvas, newTile.X, newTile.Y);
+
 
 				var random = Math.floor(Math.random() * 6);
 
@@ -138,7 +147,7 @@ function gameBoard() {
 		var infoPanel = new panel();
 		this.panel = infoPanel;
 
-		//console.log(this.canvas.getLayers());
+		console.log(this.canvas.getLayers());
 
 		cb();
 	};
@@ -291,6 +300,7 @@ function gameBoard() {
 	};
 	this.draw = function() {
 
+		var start = new Date().getTime();
 		// clear canvas
 		this.canvas.clearCanvas();
 
@@ -314,5 +324,9 @@ function gameBoard() {
 		for(var floatingText in this.floatingTexts) {
 			this.floatingTexts[floatingText].draw(this.canvas, this);
 		}
+
+		var end = new Date().getTime();
+		var time = end - start;
+		//console.log('Execution time: ' + time);
 	};
 }

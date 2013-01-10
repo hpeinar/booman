@@ -2,11 +2,22 @@
 body {
 	background-color: #CCC;
 }
-
+	
+/* background canvas */
+#backgroundCanvas {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 0;
+	margin:5px;
+	border:1px solid #AAA;
+}
 /* mainCanvas */
 #mainCanvas {
-	background-image:url('../images/grass.jpg');
-	background-repeat: repeat;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 1;
 	margin:5px;
 	border:1px solid #AAA;
 }
