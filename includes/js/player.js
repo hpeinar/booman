@@ -26,8 +26,8 @@ function player() {
 		var yStart = 1;
 
 		// get randoms
-		var xRand = Math.floor(Math.random() * (xStart + xMax));
-		var yRand = Math.floor(Math.random() * (yStart + yMax));
+		var xRand = Math.floor(Math.random() * (xMax)) + xStart;
+		var yRand = Math.floor(Math.random() * (yMax)) + yStart;
 
 		this.X = xRand * config.tileSize;
 		this.Y = yRand * config.tileSize + config.panelHeight;
