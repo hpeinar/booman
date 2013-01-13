@@ -5,6 +5,13 @@ Bomberman in html5
 
 Changelog
 ==
+<strong>v0.5</strong>
+- introduced camera. Board size is currently 40 * 40 tiles to test camera out
+- fixed a bug where space wasn't removed from keyqueue when no bombs were left to place
+
+<strong>v0.4.1</strong>
+- made a background canvas for drawing grass just one time, instead of every time on update. Removed CSS background.
+
 <strong>v0.4</strong>
 - introduced floating texts. Info texts are shown on bonus pickup and death
 - player now spawns onto a random tile (reduces the risk of spawning into a wall or no-way-out position)
