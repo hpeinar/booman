@@ -11,8 +11,8 @@ function item() {
 	this.type = 0; // item type for use inside the system
 	this.name = ''; // name for reference
 	this.sprite = null;
-	this.draw = function(canvas) {
+	this.draw = function(board, canvas) {
 		var s = new sprite();
-		s.draw(this.sprite, canvas, this.X, this.Y);
+		s.draw(this.sprite, board, canvas, this.X, this.Y);
 	}
 }

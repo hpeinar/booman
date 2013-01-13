@@ -25,7 +25,7 @@ function sprite() {
 	this.sheet = 'includes/images/'+ config.spriteSheet;
 	this.tileSize = config.tileSize;
 	// draws an sprite to given location
-	this.draw = function(spriteName, canvas, drawX, drawY) {
+	this.draw = function(spriteName, board, canvas, drawX, drawY) {
 		// get sprite
 		if(spriteName in sprites) {
 			var drawable = sprites[spriteName];	

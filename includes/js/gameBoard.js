@@ -90,12 +90,12 @@ function gameBoard() {
 				// for every tile, draw a backgroun	d grass layer
 				// draw it right here because we'll never change it
 				var s = new sprite();
-				s.draw('GRASS', this.backgroundCanvas, newTile.X, newTile.Y);
+				s.draw('GRASS', this, this.backgroundCanvas, newTile.X, newTile.Y);
 
 
 				var random = Math.floor(Math.random() * 6);
 
-				if(i == 0 || e == 0 || i == 19 || e == 19) {
+				if(i == 0 || e == 0 || i ==  (this.xTiles - 1)|| e == (this.yTiles - 1)) {
 					// paint walls
 					newTile.isBorder = true;
 					newTile.isWalkable = false;
@@ -305,24 +305,24 @@ function gameBoard() {
 		this.canvas.clearCanvas();
 
 		// panel
-		this.panel.draw(this.canvas, this);
+		this.panel.draw(this);
 
 		// tiles
 		for(var tile in this.tiles) {
-			this.tiles[tile].draw(this.canvas);
+			this.tiles[tile].draw(this, this.canvas);
 		}
 
 		// bombs
 		for(var bomb in this.bombs) {
-			this.bombs[bomb].draw(this.canvas);
+			this.bombs[bomb].draw(this, this.canvas);
 		}
 
 		// player
-		this.player.draw(this.canvas);
+		this.player.draw(this, this.canvas);
 
 		// floating texts
 		for(var floatingText in this.floatingTexts) {
-			this.floatingTexts[floatingText].draw(this.canvas, this);
+			this.floatingTexts[floatingText].draw(this, this.canvas);
 		}
 
 		var end = new Date().getTime();

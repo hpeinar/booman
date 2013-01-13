@@ -24,16 +24,16 @@ function tile() {
 			tile.sprite = 'GRASS';
 		}, time);
 	}
-	this.draw = function(canvas) {
+	this.draw = function(board, canvas) {
 
 		if(this.sprite != 'GRASS') {
 			var s = new sprite();
-			s.draw(this.sprite, canvas, this.X, this.Y);
+			s.draw(this.sprite, board, canvas, this.X, this.Y);
 		}
 		
 		// draw the item if it's seeable
 		if(this.hasItem == true && this.isWalkable == true) {
-			this.item.draw(canvas);
+			this.item.draw(board, canvas);
 		}
 		//context.fillStyle = "#999999":
 		//context.fillRect(X, Y, config.tileSize, config.tileSize);

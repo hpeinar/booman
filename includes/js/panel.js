@@ -7,8 +7,8 @@ http://projekt406.ee/codeblog
 function panel() {
 	this.X = 0;
 	this.Y = 0;
-	this.draw = function(canvas, board) {
-		canvas.drawRect({
+	this.draw = function(board) {
+		board.canvas.drawRect({
 			fillStyle: "#ccc",
 			x: 0, y: 0,
 			width: config.panelWidth,

@@ -13,7 +13,7 @@ function floatingText() {
 
 	this.opacity = 1;
 
-	this.draw = function(canvas, board) {
+	this.draw = function(board, canvas) {
 		// before drawing, move and fade the text
 
 		if(this.opacity > 0.1) {

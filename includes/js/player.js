@@ -14,9 +14,9 @@ function player() {
 	this.deaths = 0;
 	this.score = 0;
 	this.sprite = 'PLAYER_DOWN';
-	this.draw = function(canvas) {
+	this.draw = function(board, canvas) {
 		var s = new sprite();
-		s.draw(this.sprite, canvas, this.X, this.Y);
+		s.draw(this.sprite, board, canvas, this.X, this.Y);
 	};
 	this.randomSpawn = function(board) {
 		var xMax = board.xTiles - 2; // minus wall tiles

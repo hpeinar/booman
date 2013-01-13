@@ -117,8 +117,8 @@ function bomb() {
 			bomb.lowerTimer(board, bomb, bombInterval, player);
 		}, 1000)
 	}
-	this.draw = function(canvas) {
+	this.draw = function(board, canvas) {
 		var s = new sprite();
-		s.draw(this.sprite, canvas, this.X, this.Y);
+		s.draw(this.sprite, board, canvas, this.X, this.Y);
 	}
 }
