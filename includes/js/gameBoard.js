@@ -14,6 +14,7 @@ function gameBoard() {
 	this.backgroundCanvas = null;
 	this.panel = null;
 	this.lastKeysDown = null;
+	this.camera = null;
 
 	// move timer
 	this.isMoving = false;
@@ -22,8 +23,8 @@ function gameBoard() {
 	this.moveY = 0;
 
 	// board options
-	this.xTiles = 20;
-	this.yTiles = 20;
+	this.xTiles = 60;
+	this.yTiles = 60;
 
 	this.bind = function(board, cb) {
 		board.canvas.keydown(function(e) {
@@ -60,6 +61,9 @@ function gameBoard() {
 
 		// init backgroundCanvas
 		this.backgroundCanvasInit();
+
+		// init camera
+		this.camera = new camera(0, 0 + config.panelHeight, config.canvasWidth, config.canvasHeight);
 
 		// to not use width() or height() methods here, it'll screw the canvas up
 		this.canvas.attr('width', config.canvasWidth);
@@ -260,10 +264,13 @@ function gameBoard() {
 
 									newBomb.timer(board, newBomb, board.player);
 									board.bombs.push(newBomb);
-									board.keyQueue.splice(board.keyQueue.indexOf(32), 1);
+									
 								}
 							})
 						}
+						
+						// remove spacebar even if there's no bombs to plant
+						board.keyQueue.splice(board.keyQueue.indexOf(32), 1);
 
 					}
 

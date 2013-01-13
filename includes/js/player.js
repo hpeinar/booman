@@ -19,8 +19,8 @@ function player() {
 		s.draw(this.sprite, board, canvas, this.X, this.Y);
 	};
 	this.randomSpawn = function(board) {
-		var xMax = board.xTiles - 2; // minus wall tiles
-		var yMax = board.yTiles - 2;
+		var xMax = 20 - 2; // minus wall tiles
+		var yMax = 20 - 2;
 
 		var xStart = 1;
 		var yStart = 1;
@@ -32,15 +32,16 @@ function player() {
 		this.X = xRand * config.tileSize;
 		this.Y = yRand * config.tileSize + config.panelHeight;
 	};
-	this.die = function(canvas) {
+	this.die = function(board) {
 		var floater = new floatingText();
 		floater.text = '+1 death';
 		floater.color = '#900';
 		floater.X = this.X - 5;
 		floater.Y = this.Y - 10;
-		canvas.floatingTexts.push(floater);
-		
-		this.randomSpawn(canvas);
+		board.floatingTexts.push(floater);
+		board.camera.X = 0;
+		board.camera.Y = 0 + config.panelHeight;
+		this.randomSpawn(board);
 
 		this.deaths++;
 	};
@@ -123,16 +124,16 @@ function player() {
 							// generate a floating text there
 							var floater = new floatingText();
 							floater.text = '+1 bomb';
-							floater.X = currentTile.X;
-							floater.Y = currentTile.Y;
+							floater.X = currentTile.X - board.camera.X;
+							floater.Y = currentTile.Y - board.camera.Y + config.panelHeight;
 							board.floatingTexts.push(floater);
 
 							board.player.bombs++;
 						} else if(currentTile.item.type == 2) {
 							var floater = new floatingText();
 							floater.text = '+1 radius';
-							floater.X = currentTile.X;
-							floater.Y = currentTile.Y;
+							floater.X = currentTile.X - board.camera.X;
+							floater.Y = currentTile.Y - board.camera.Y + config.panelHeight;
 							board.floatingTexts.push(floater);
 
 							board.player.bombRadius++;
@@ -154,8 +155,30 @@ function player() {
 	this.move = function(board, xSpeed, ySpeed) {
 
 		this.canMove(board, xSpeed, ySpeed, function(xS, yS) {
+
+			var cameraSpeed = 1;
+			// move camera
+			if(board.player.X >= board.camera.X + board.camera.width - (4 * config.tileSize) && xS > 0) {
+				board.camera.move(board, cameraSpeed, 0);
+			}
+
+			if(board.player.Y >= board.camera.Y + board.camera.height - (4 * config.tileSize) && yS > 0) {
+				board.camera.move(board, 0, cameraSpeed);
+			}
+
+			if(board.player.X <= board.camera.X + (4 * config.tileSize) && xS < 0) {
+				board.camera.move(board, cameraSpeed * -1, 0);
+			}
+
+			if(board.player.Y <= board.camera.Y + (4 * config.tileSize) && yS < 0) {
+				board.camera.move(board, 0, cameraSpeed * -1);
+			}
+
+			
+
+
 			board.player.X += xS;
-			board.player.Y += yS;			
+			board.player.Y += yS;
 		})
 	}
 }

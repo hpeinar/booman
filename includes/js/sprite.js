@@ -26,6 +26,18 @@ function sprite() {
 	this.tileSize = config.tileSize;
 	// draws an sprite to given location
 	this.draw = function(spriteName, board, canvas, drawX, drawY) {
+		// see if the sprite fits into camera view
+		if(drawX < board.camera.X || drawX > board.camera.X + board.camera.width) {
+			return;
+		}
+
+		if(drawY < board.camera.Y || drawY > board.camera.Y + board.camera.height) {
+			return;
+		}
+
+		drawX -= board.camera.X;
+		drawY -= board.camera.Y - config.panelHeight;
+
 		// get sprite
 		if(spriteName in sprites) {
 			var drawable = sprites[spriteName];	
