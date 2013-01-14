@@ -16,6 +16,8 @@ function gameBoard() {
 	this.lastKeysDown = null;
 	this.camera = null;
 
+	this.mapSeed = null;
+
 	// move timer
 	this.isMoving = false;
 	this.movingTimer = 0;
@@ -79,7 +81,12 @@ function gameBoard() {
 		console.log('Gameboard initilization');
 
 		// generate map
-		//var tile = new tile();
+		
+		// see the math random for map generation
+		// first generate a random seed
+		var d = new Date();
+		this.mapSeed = Math.floor(d * Math.random());
+		Math.seedrandom(this.mapSeed);
 
 		for(var i = 0;i < this.xTiles;i++) {
 
@@ -143,6 +150,7 @@ function gameBoard() {
 		}
 
 
+
 		// add player
 		var newPlayer = new player();
 		this.player = newPlayer;
@@ -152,6 +160,9 @@ function gameBoard() {
 		this.panel = infoPanel;
 
 		console.log(this.canvas.getLayers());
+
+		// random the seed from this moment on
+		Math.seedrandom();
 
 		cb();
 	};
