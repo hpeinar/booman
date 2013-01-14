@@ -45,6 +45,10 @@ Little about it:
 - It has no levels, so after blowing all the blocks up there is nothing else to do.
 - Map generation is now seeded (as of v0.6)
 
+Future plans:
+==
+I ran into a performance problem with client side script. One day I wondered myself that a 10 000 tiles big bomberman map would be awesome. After little testing and playing around with numbers I understood that anything over 100x100 is getting tricky. Even then I need to have background as a "static" layer and just draw the tiles I really need. But with more tiles, arrays just get too big to handle and browsers start lagging and as I couldn't come up with a solution which could be made from client-side, I need to move my 10 000 tile map to a server-side. Plan is to make it so, that client holds 100x100 tiles at the most at any given time. If the player moves on the map, I'll request needed tiles from the server and empty up the array from other end, so it'll still be 100x100. Server will just act as a very big storage, holding all the tiles I've used and generating new ones if needed.
+
 demo
 ==
 http://projekt406.ee/codeblog/demos/booman/ (latest)<br />
