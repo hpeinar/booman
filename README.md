@@ -7,6 +7,8 @@ Changelog
 ==
 <strong>v0.6 (upcoming)</strong>
 - map generation is now seeded using David Bau's script (see credits)
+- Player no longer spawns on top of a wall. There is still a chance to get stuck, but it's reaaaaaly low.
+- Spritesheet is now pre-loaded
 
 <strong>v0.5</strong>
 - introduced camera. Board size is currently 60 * 60 tiles to test camera out
@@ -42,12 +44,10 @@ Little about it:
 - Sprites are drawn using <a href="http://calebevans.me/projects/jcanvas/index.php" title="jCanvas">jCanvas</a>.
 - It has no levels, so after blowing all the blocks up there is nothing else to do.
 - Map generation is now seeded (as of v0.6)
-- It's missing sprite pre-loading, so you might see some flickering with the images.
-- It is possible that you spawn on a wall and cannot move, either blow yourself up with the wall or just refresh to get new map
 
 demo
 ==
-http://projekt406.ee/codeblog/demos/booman/ (latest)
+http://projekt406.ee/codeblog/demos/booman/ (latest)<br />
 http://projekt406.ee/codeblog/demos/boomanv1/ (first release)
 
 blogpost

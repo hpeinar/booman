@@ -4,7 +4,9 @@ http://projekt406.ee/codeblog
 17.12.2012
 */
 
-$(document).ready(function() {
+// using .load instead of .ready to wait spiresheet to be loaded
+$(window).load(function() {
+
 	// clicking anywhere will give the canvas focus
 	$('body').click(function(e) {
 		$('#mainCanvas').focus();

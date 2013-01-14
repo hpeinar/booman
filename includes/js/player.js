@@ -29,8 +29,18 @@ function player() {
 		var xRand = Math.floor(Math.random() * (xMax)) + xStart;
 		var yRand = Math.floor(Math.random() * (yMax)) + yStart;
 
-		this.X = xRand * config.tileSize;
-		this.Y = yRand * config.tileSize + config.panelHeight;
+		var spawnTileX = xRand * config.tileSize;
+		var spawnTileY = yRand * config.tileSize + config.panelHeight;
+
+		var that = this;
+		board.getTile(board, spawnTileX, spawnTileY, function(tile) {
+			if(tile.sprite == 'GRASS') {
+				that.X = spawnTileX;
+				that.Y = spawnTileY;
+			} else {
+				that.randomSpawn(board);
+			}
+		});
 	};
 	this.die = function(board) {
 		var floater = new floatingText();
