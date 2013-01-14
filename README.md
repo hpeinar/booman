@@ -5,7 +5,7 @@ Bomberman in html5
 
 Changelog
 ==
-<strong>v0.6 (upcoming)</strong>
+<strong>v0.6</strong>
 - map generation is now seeded using David Bau's script (see credits)
 - Player no longer spawns on top of a wall. There is still a chance to get stuck, but it's reaaaaaly low.
 - Spritesheet is now pre-loaded
