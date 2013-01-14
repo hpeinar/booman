@@ -5,6 +5,9 @@ Bomberman in html5
 
 Changelog
 ==
+<strong>v0.6 (upcoming)</strong>
+- map generation is now seeded using David Bau's script (see credits)
+
 <strong>v0.5</strong>
 - introduced camera. Board size is currently 40 * 40 tiles to test camera out
 - fixed a bug where space wasn't removed from keyqueue when no bombs were left to place
@@ -56,5 +59,5 @@ Do whatever you please, but refer to me as an original author :)
 credits
 ==
 All the credits for tiles and the character go to <strong>Klex1992</strong> on <a href="http://www.rpgmakervx.net/index.php?showtopic=31465" title="rpgmakervx.net" target="_blank">rpgmakervx.net</a><br />
-<strong>Big</strong> thanks to <a href="https://github.com/r3ality" title"R3ality's github" target="_blank">R3ality</a> for brainstorming with me and helping with finding ideas and solutions to some problems I ran into.
-Thanks to <a href="http://davidbau.com/" title"David Bau" target="_blank">David Bau</a> for providing the javascript <a href="http://davidbau.com/archives/2010/01/30/random_seeds_coded_hints_and_quintillions.html#more" target="_blank">Math.random() seeding script</a>.
+<strong>Big</strong> thanks to <a href="https://github.com/r3ality" title"R3ality's github" target="_blank">R3ality</a> for brainstorming with me and helping with finding ideas and solutions to some problems I ran into.<br />
+Also thanks to <a href="http://davidbau.com/" title"David Bau" target="_blank">David Bau</a> for providing the javascript <a href="http://davidbau.com/archives/2010/01/30/random_seeds_coded_hints_and_quintillions.html#more" target="_blank">Math.random() seeding script</a>.
