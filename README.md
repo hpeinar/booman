@@ -9,7 +9,7 @@ Changelog
 - map generation is now seeded using David Bau's script (see credits)
 
 <strong>v0.5</strong>
-- introduced camera. Board size is currently 40 * 40 tiles to test camera out
+- introduced camera. Board size is currently 60 * 60 tiles to test camera out
 - fixed a bug where space wasn't removed from keyqueue when no bombs were left to place
 
 <strong>v0.4.1</strong>
@@ -34,19 +34,21 @@ Changelog
 
 Little about it:
 ==
-- ~750 lines of js (v0.1)
+- ~1000 lines of js (v0.5)
 - took me around 2 weeks, after the work development time to create (v0.1)
 - everything is written in OOP style, so all the things are objects which have their own properties and methods
 - Game update and draw functions are called every 25ms
 - Input is handled using queue system. All keystrokes are put into an queue which is handled on the game update. This should give pretty responsive gameplay.
 - Sprites are drawn using <a href="http://calebevans.me/projects/jcanvas/index.php" title="jCanvas">jCanvas</a>.
 - It has no levels, so after blowing all the blocks up there is nothing else to do.
+- Map generation is now seeded (as of v0.6)
 - It's missing sprite pre-loading, so you might see some flickering with the images.
 - It is possible that you spawn on a wall and cannot move, either blow yourself up with the wall or just refresh to get new map
 
 demo
 ==
-http://projekt406.ee/codeblog/demos/booman/
+http://projekt406.ee/codeblog/demos/booman/ (latest)
+http://projekt406.ee/codeblog/demos/boomanv1/ (first release)
 
 blogpost
 ==
