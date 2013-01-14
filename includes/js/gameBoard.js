@@ -98,7 +98,7 @@ function gameBoard() {
 				newTile.identifier = i + (e*i);
 				newTile.sprite = 'GRASS';
 
-				// for every tile, draw a backgroun	d grass layer
+				// for every tile, draw a background grass layer
 				// draw it right here because we'll never change it
 				var s = new sprite();
 				s.draw('GRASS', this, this.backgroundCanvas, newTile.X, newTile.Y);
