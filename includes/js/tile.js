@@ -16,6 +16,7 @@ function tile() {
 	this.hasItem = null;
 	this.item = null;
 	this.hasBomb = null;
+	this.rotation = 0;
 	this.breakWall = function(tile, color, time) {
 		setTimeout(function() {
 			tile.color = color;
@@ -25,10 +26,9 @@ function tile() {
 		}, time);
 	}
 	this.draw = function(board, canvas) {
-
 		if(this.sprite != 'GRASS') {
 			var s = new sprite();
-			s.draw(this.sprite, board, canvas, this.X, this.Y);
+			s.draw(this.sprite, board, canvas, this.X, this.Y, this.rotation);
 		}
 		
 		// draw the item if it's seeable

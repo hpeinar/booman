@@ -13,12 +13,13 @@ function bomb() {
 	this.originTile = null;
 	this.spreading = false;
 	this.sprite = null;
-	this.spreadFire = function(board, tile, player) {
+	this.spreadFire = function(board, tile, player, rotation) {
 		if(tile) {
 			if(this.spreading && !tile.isBorder) {
 				tile.sprite = 'FIRE';
 				tile.isDeadly = true;
 				tile.breakWall(tile, '#FFF', 1000);
+				tile.rotation = rotation;
 
 				// check if player is on any of the tiles, if so, kill the player
 				for(var playerTile in player.tilesOn) {
@@ -60,7 +61,7 @@ function bomb() {
 			bomb.originTile.color = '#F0F';
 			bomb.originTile.breakWall(bomb.originTile, '#FFF', 1000);
 			bomb.originTile.hasBomb = false;
-			bomb.originTile.sprite = 'FIRE';
+			bomb.originTile.sprite = 'FIRE_CENTER';
 			bomb.originTile.isDeadly = true;
 			for(var playerTile in player.tilesOn) {
 				if(player.tilesOn[playerTile] === bomb.originTile) {
@@ -80,7 +81,7 @@ function bomb() {
 			bomb.spreading = true;
 			for(var i = 1;i <= bomb.boomRadius;i++) {
 				board.getTile(board, bomb.originTile.X, bomb.originTile.Y - config.tileSize * i, function(tile) {
-					bomb.spreadFire(board, tile, player);
+					bomb.spreadFire(board, tile, player, 0);
 				});
 			}
 
@@ -88,7 +89,7 @@ function bomb() {
 			bomb.spreading = true;
 			for(var i = 1;i <= bomb.boomRadius;i++) {
 				board.getTile(board, bomb.originTile.X - config.tileSize * i, bomb.originTile.Y, function(tile) {
-					bomb.spreadFire(board, tile, player);
+					bomb.spreadFire(board, tile, player, 90);
 				});
 			}			
 
@@ -96,7 +97,7 @@ function bomb() {
 			bomb.spreading = true;
 			for(var i = 1;i <= bomb.boomRadius;i++) {
 				board.getTile(board, bomb.originTile.X, bomb.originTile.Y + config.tileSize * i, function(tile) {
-					bomb.spreadFire(board, tile, player);
+					bomb.spreadFire(board, tile, player, 0);
 				});
 			}
 
@@ -104,7 +105,7 @@ function bomb() {
 			bomb.spreading = true;
 			for(var i = 1;i <= bomb.boomRadius;i++) {
 				board.getTile(board, bomb.originTile.X + config.tileSize * i, bomb.originTile.Y, function(tile) {
-					bomb.spreadFire(board, tile, player);
+					bomb.spreadFire(board, tile, player, 90);
 				});
 			}
 
