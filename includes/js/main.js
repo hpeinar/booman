@@ -17,7 +17,7 @@ $(window).load(function() {
 	// we need to queue up all the clicks we get from the client
 	$('body').keydown(function(e) {
 		if(game.keyQueue.indexOf(e.keyCode) == -1) {
-			game.keyQueue.push(e.keyCode);
+			game.keyQueue.unshift(e.keyCode);
 		}
 	})
 
